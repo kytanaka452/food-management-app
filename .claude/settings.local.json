@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit: Food management app with Supabase backend\n\nFeatures:\n- User authentication \\(signup/login\\)\n- Group management for household sharing\n- Food item CRUD with real-time updates\n- Expiry date tracking with color-coded status\n- Storage location filtering \\(refrigerator, freezer, pantry, other\\)\n- Category filtering\n\nTech stack:\n- Vite + React + TypeScript\n- Supabase for auth and database\n- React Hook Form for form handling\n- date-fns for date manipulation\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}
