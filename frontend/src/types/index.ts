@@ -91,3 +91,98 @@ export interface AuthState {
   loading: boolean;
   currentGroup: Group | null;
 }
+
+// =============================================
+// 買い物リスト関連の型
+// =============================================
+
+export interface ShoppingList {
+  id: string;
+  group_id: string;
+  name: string;
+  is_active: boolean;
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ShoppingListItem {
+  id: string;
+  list_id: string;
+  name: string;
+  quantity?: string;
+  category_id?: string;
+  is_purchased: boolean;
+  purchased_at?: string;
+  purchased_by?: string;
+  sort_order: number;
+  created_at: string;
+}
+
+export interface ShoppingListItemWithCategory extends ShoppingListItem {
+  category?: Category;
+}
+
+export interface CreateShoppingListForm {
+  name: string;
+}
+
+export interface CreateShoppingListItemForm {
+  name: string;
+  quantity?: string;
+  category_id?: string;
+}
+
+// =============================================
+// 通知設定関連の型
+// =============================================
+
+export interface NotificationSettings {
+  id: string;
+  user_id: string;
+  group_id?: string;
+  days_before_expiry: number[];
+  push_enabled: boolean;
+  email_enabled: boolean;
+  notification_time: string;
+  notify_expired: boolean;
+  notify_warning: boolean;
+  notify_caution: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PushSubscription {
+  id: string;
+  user_id: string;
+  endpoint: string;
+  p256dh: string;
+  auth: string;
+  user_agent?: string;
+  created_at: string;
+}
+
+export interface NotificationHistory {
+  id: string;
+  user_id: string;
+  food_item_id: string;
+  notification_type: 'expired' | 'warning' | 'caution';
+  sent_at: string;
+}
+
+export interface ExpiringFoodItem extends FoodItem {
+  group_name?: string;
+  category_name?: string;
+  expiry_status: 'expired' | 'warning' | 'caution' | 'safe';
+  days_until_expiry: number;
+}
+
+export interface CreateNotificationSettingsForm {
+  days_before_expiry: number[];
+  push_enabled: boolean;
+  email_enabled: boolean;
+  notification_time: string;
+  notify_expired: boolean;
+  notify_warning: boolean;
+  notify_caution: boolean;
+}

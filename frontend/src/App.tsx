@@ -4,6 +4,8 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Groups from './pages/Groups';
 import Dashboard from './pages/Dashboard';
+import ShoppingList from './pages/ShoppingList';
+import NotificationSettings from './pages/NotificationSettings';
 import './App.css';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -42,6 +44,12 @@ function App() {
           } />
           <Route path="/dashboard" element={
             <PrivateRoute><Dashboard /></PrivateRoute>
+          } />
+          <Route path="/shopping" element={
+            <PrivateRoute><ShoppingList /></PrivateRoute>
+          } />
+          <Route path="/notifications" element={
+            <PrivateRoute><NotificationSettings /></PrivateRoute>
           } />
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { authService } from '../services/authService';
 import { groupService } from '../services/groupService';
@@ -11,6 +11,7 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, currentGroup, setCurrentGroup } = useAuth();
   const [groups, setGroups] = useState<Group[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -85,6 +86,31 @@ export default function Layout({ children }: Props) {
           </button>
         </div>
       </header>
+
+      {/* ナビゲーションバー */}
+      <nav className="nav-bar">
+        <button
+          className={`nav-item ${location.pathname === '/dashboard' ? 'active' : ''}`}
+          onClick={() => navigate('/dashboard')}
+        >
+          <span className="nav-icon">🏠</span>
+          <span className="nav-label">ホーム</span>
+        </button>
+        <button
+          className={`nav-item ${location.pathname === '/shopping' ? 'active' : ''}`}
+          onClick={() => navigate('/shopping')}
+        >
+          <span className="nav-icon">🛒</span>
+          <span className="nav-label">買い物リスト</span>
+        </button>
+        <button
+          className={`nav-item ${location.pathname === '/notifications' ? 'active' : ''}`}
+          onClick={() => navigate('/notifications')}
+        >
+          <span className="nav-icon">🔔</span>
+          <span className="nav-label">通知設定</span>
+        </button>
+      </nav>
 
       <main className="main-content">
         {children}
